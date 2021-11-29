@@ -1,0 +1,38 @@
+{
+  "name": "termivolt",
+  "version": "0.1.0",
+  "description": "A simple utility to interact with the Revolt API via the command line.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rexogamer/termivolt.git"
+  },
+  "keywords": [
+    "revolt",
+    "revoltchat",
+    "cil"
+  ],
+  "author": {
+    "name": "Rexogamer",
+    "email": "beartechtalks@gmail.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rexogamer/termivolt/issues"
+  },
+  "homepage": "https://github.com/rexogamer/termivolt#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "revolt.js": "^5.1.0-alpha.10"
+  },
+  "engines": {
+    "node": "^12.13.0 || ^14.15.0 || >=16"
+  },
+  "bin": {
+    "termivolt": "src/index.js"
+  }
+}
