@@ -16,7 +16,7 @@ const sendMsg = function (userType, token, channel, content) {
     return (
       console.log(
         styles.error(
-          "You need to specify a token, a channel ID and the content of the message (all in quotes)."
+          "You need to specify a token, a channel ID and the content of the message (the last two in quotes)."
         )
       ) && process.exit()
     );

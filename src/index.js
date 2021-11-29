@@ -30,7 +30,7 @@ if (command) {
       const data = JSON.parse(await fs.readFile("package.json"));
 
       // send help message
-      console.log(`${chalk.bold.underline.blue(`Termivolt v${data.version}`)}\nTermivolt is a simple utility to interact with the Revolt API via the command line.\n\n${chalk.bold.underline("Commands:\n")}${chalk.bold("-send:")} Sends a message via the specified account.\n${chalk.underline("Example usage:")} termviolt -send <--user/--bot> <token> <channel> <message content (in quotes)>\n${chalk.underline("Notes:")} Formatting may be broken in some cases. In addition, sending via user accounts (using session tokens) currently seems to be broken - a fix will be released in the future.`);
+      console.log(`${styles.title(`Termivolt v${data.version}`)}\nTermivolt is a simple utility to interact with the Revolt API via the command line.\n\n${styles.header("Commands:\n")}${chalk.bold("-send:")} Sends a message via the specified account.\n${chalk.underline("Example usage:")} termviolt -send <(--user/--bot)> <token> <channel> <message content (in quotes)>\n${chalk.underline("Notes:")} Formatting may be broken in some cases. In addition, sending via user accounts (using session tokens) currently seems to be broken - a fix will be released in the future.`);
       break;
     default:
       console.log(
