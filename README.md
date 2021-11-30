@@ -44,3 +44,7 @@ To send messages with Termivolt, run `termivolt -send`. Here's the full list of 
 ### Help (-help)
 
 If you need help, or want to see a list of commands, run `termivolt -help`. This will also show you what version of Termivolt you're using, which is useful for bug reports and such.
+
+## Support
+
+If you want to report a bug, suggest a feature or get help with using Termivolt, you can [open an issue](https://github.com/rexogamer/termivolt/issues/new) or join [Termivolt's support server](https://rvlt.gg/ra9dr2Rd) on Revolt.
