@@ -7,5 +7,5 @@ export default {
 
   // -help styles
   title: chalk.bold.underline.blue,
-  header: chalk.bold.underline
+  header: chalk.bold.underline,
 };
