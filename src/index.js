@@ -46,13 +46,13 @@ if (command) {
           "Example usage:"
         )} termviolt -send <(--user/--bot)> <token> <channel ID> <message content (in quotes)>\n${chalk.underline(
           "Notes:"
-        )} Formatting may be broken in some cases. In addition, sending via user accounts (using session tokens) currently seems to be broken - a fix will be released in the future.\n\n${chalk.bold(
+        )} Formatting may be broken in some cases.\n\n${chalk.bold(
           "-kick:"
         )} Kicks a member from the specified server.\n${chalk.underline(
           "Example usage:"
         )} termviolt -kick <(--user/--bot)> <token> <server ID> <user ID>\n${chalk.underline(
           "Notes:"
-        )} This requires the Kick Members permission - if you get a 403 error, this might be why. In addition, sending via user accounts (using session tokens) currently seems to be broken - a fix will be released in the future.`
+        )} This requires the Kick Members permission - if you get a 403 error, this might be why.`
       );
       break;
     default:

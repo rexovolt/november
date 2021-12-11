@@ -59,7 +59,7 @@ const kick = function (userType, token, server, userid) {
   // log in
   const client = new Client();
   try {
-    isUser ? client.useExistingSession(token) : client.loginBot(token);
+    isUser ? client.useExistingSession({token}) : client.loginBot(token);
     console.log(styles.info("[INFO] Logged in."));
   } catch (error) {
     console.log(

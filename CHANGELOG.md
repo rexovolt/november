@@ -1,4 +1,4 @@
-# v0.2.0 (2021-11-29)
+# v0.2.0 (2021-12-01)
 
 - Add support for kicking users (-kick)
 - General fixes and improvements (less sub-dependencies :tada:)

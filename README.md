@@ -32,11 +32,11 @@ Required arguments are in \<angle brackets>, while optional arguments are in [sq
 
 To send messages with Termivolt, run `termivolt -send`. Here's the full list of arguments:
 
-`termivolt -send <(--user/--bot)> <channel id (in quotes)> <message content (in quotes)>`
+`termivolt -send <(--user/--bot)> <token> <channel id (in quotes)> <message content (in quotes)>`
 
 #### Arguments
 
-- `--user/--bot` determines whether the token is a bot or session token. These require different methods of authenticating. Session tokens are currently broken - a fix will be released in the future.
+- `--user/--bot` determines whether the token is a bot or session token. These require different methods of authentication.
 - The token is provided as-is (i.e. as copied from Revolt). Bot tokens can be found in your bot settings page - to get session tokens, [follow this guide](https://infi.sh/post/revolt-tokens).
 - The channel ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the channel's entry on the channel list and selecting "Copy channel ID".
 - The message itself should be fully encased in double quotes - if you want to use double quotes in the message itself, escape them with a backslash. Note that message formatting may be messed up in some cases - I'm still investigating as to why, but it seems backticks and \newlines break.
@@ -45,11 +45,11 @@ To send messages with Termivolt, run `termivolt -send`. Here's the full list of 
 
 To kick members from servers with Termivolt, run `termivolt -send`. Note that you'll need the `Kick Members` permission - if you get a 403 error, this might be why. Here's the full list of arguments:
 
-`termivolt -kick <(--user/--bot)> <server id (in quotes)> <user id (in quotes)>`
+`termivolt -kick <(--user/--bot)> <token> <server id (in quotes)> <user id (in quotes)>`
 
 #### Arguments
 
-- `--user/--bot` determines whether the token is a bot or session token. These require different methods of authenticating. Session tokens are currently broken - a fix will be released in the future.
+- `--user/--bot` determines whether the token is a bot or session token. These require different methods of authentication.
 - The token is provided as-is (i.e. as copied from Revolt). Bot tokens can be found in your bot settings page - to get session tokens, [follow this guide](https://infi.sh/post/revolt-tokens).
 - The server ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the server's entry on the server list and selecting "Copy server ID".
 - The user ID should aslo be provided as a string.
