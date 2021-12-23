@@ -27,7 +27,7 @@
   "homepage": "https://github.com/rexogamer/termivolt#readme",
   "dependencies": {
     "chalk": "^5.0.0",
-    "revolt.js": "^5.1.0-alpha.10"
+    "revolt.js": "^5.1.0-alpha.15"
   },
   "engines": {
     "node": "^12.13.0 || ^14.15.0 || >=16"
