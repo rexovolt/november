@@ -1,8 +1,8 @@
-#! /usr/bin/env node --experimental-specifier-resolution=node
+#! /usr/bin/env node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules
 
 import chalk from "chalk";
 import { kick, styles, sendMsg } from "./lib/index.js";
-import { promises as fs } from "fs";
+import packageinfo from "../package.json"; // assert { type: "json" };
 
 const [nodeExec, scriptPath, command, ...args] = process.argv;
 
@@ -23,21 +23,10 @@ if (command) {
       kick(args[0], args[1], args[2], args[3]);
       break;
     case "-help":
-      // get version data from package.json
-      try {
-        JSON.parse(await fs.readFile("package.json"));
-      } catch (error) {
-        console.log(
-          styles.error(`There was an issue geting Termivolt's version.`)
-        );
-      }
-
-      const data = JSON.parse(await fs.readFile("package.json"));
-
       // send help message
       console.log(
         `${styles.title(
-          `Termivolt v${data.version}`
+          `Termivolt v${packageinfo.version}`
         )}\nTermivolt is a simple utility to interact with the Revolt API via the command line.\n\n${styles.header(
           "Commands:\n"
         )}${chalk.bold(
