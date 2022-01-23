@@ -92,12 +92,12 @@ const kick = function (userType, token, server, userid) {
     } catch (error) {
       console.log(
         styles.error(
-          `There was an issue sending the message.\n\nThe error was: ${error}`
+          `There was an issue kicking the user.\n\nThe error was: ${error}`
         )
       );
     }
 
-    // for SOME reason we need to end the process manually after sending the message - is something lingering?
+    // for SOME reason we need to end the process manually after kicking the user - is something lingering?
     process.kill(process.pid);
   });
 };

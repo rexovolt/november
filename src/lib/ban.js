@@ -2,13 +2,13 @@ import { Client } from "revolt.js";
 
 import styles from "./styles.js";
 
-const sendMsg = function (userType, token, channel, content, apiURL = "https://api.revolt.chat/") {
+const ban = function (userType, token, server, userid) {
   // if any args are missing, throw errors before doing anything
   if (!userType)
     return (
       console.log(
         styles.error(
-          "You need to specify if the account is a user or a bot (--user or --bot), a token, a channel ID and the content of the message (all in quotes)."
+          "You need to specify if the account is a user or a bot (--user or --bot), a token, a server ID and the ID of the user to ban (all in quotes)."
         )
       ) && process.exit()
     );
@@ -16,19 +16,19 @@ const sendMsg = function (userType, token, channel, content, apiURL = "https://a
     return (
       console.log(
         styles.error(
-          "You need to specify a token, a channel ID and the content of the message (the last two in quotes)."
+          "You need to specify a token, a server ID and the ID of the user to ban (the last two in quotes)."
         )
       ) && process.exit()
     );
-  if (!channel)
+  if (!server)
     return (
       console.log(
         styles.error(
-          "You need to specify a channel ID and the content of the message (both in quotes)."
+          "You need to specify a server ID and the ID of the user to ban (both in quotes)."
         )
       ) && process.exit()
     );
-  if (!content)
+  if (!userid)
     return (
       console.log(
         styles.error(
@@ -57,7 +57,7 @@ const sendMsg = function (userType, token, channel, content, apiURL = "https://a
     );
 
   // log in
-  const client = new Client({apiURL});
+  const client = new Client();
   try {
     isUser ? client.useExistingSession({token}) : client.loginBot(token);
     console.log(styles.info("[INFO] Logged in."));
@@ -71,35 +71,36 @@ const sendMsg = function (userType, token, channel, content, apiURL = "https://a
 
   client.on("ready", async () => {
     try {
-      const chnl = client.channels?.get(channel);
-      if (chnl === undefined) throw error;
+      const srv = client.servers?.get(server);
+      if (srv === undefined) throw error;
     } catch (error) {
       console.log(
         styles.error(
-          `There was an issue getting the channel - is the ID correct?\nThe error was: ${error}`
+          `There was an issue getting the server - is the ID correct?\nThe error was: ${error}`
         )
       ) && client.logout();
       process.exit();
     }
 
-    const channel2 = client.channels?.get(channel);
-    console.log(styles.info("[INFO] The channel has been found."));
+    const server2 = client.servers?.get(server);
+    console.log(styles.info("[INFO] The server has been found."));
 
     // send the message
     try {
-      await channel2.sendMessage(content);
-      console.log(styles.success("Your message has successfuly been sent."));
+      const reason = undefined; // todo: add reason support
+      await server2.banUser(userid, { reason });
+      console.log(styles.success("The user has been banned."));
     } catch (error) {
       console.log(
         styles.error(
-          `There was an issue sending the message.\n\nThe error was: ${error}`
+          `There was an issue banning the user.\n\nThe error was: ${error}`
         )
       );
     }
 
-    // for SOME reason we need to end the process manually after sending the message - is something lingering?
+    // for SOME reason we need to end the process manually after banning the user - is something lingering?
     process.kill(process.pid);
   });
 };
 
-export { sendMsg };
+export { ban };

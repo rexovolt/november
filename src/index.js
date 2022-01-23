@@ -1,7 +1,7 @@
 #! /usr/bin/env node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules
 
 import chalk from "chalk";
-import { kick, styles, sendMsg } from "./lib/index.js";
+import { ban, kick, sendMsg, styles } from "./lib/index.js";
 import packageinfo from "../package.json"; // assert { type: "json" };
 
 const [nodeExec, scriptPath, command, ...args] = process.argv;
@@ -22,6 +22,11 @@ if (command) {
         console.log(styles.error("You've specified more than 4 arguments."));
       kick(args[0], args[1], args[2], args[3]);
       break;
+    case "-ban":
+      if (args.length > 4)
+        console.log(styles.error("You've specified more than 4 arguments."));
+      ban(args[0], args[1], args[2], args[3]);
+      break;
     case "-help":
       // send help message
       console.log(
@@ -41,7 +46,13 @@ if (command) {
           "Example usage:"
         )} termviolt -kick <(--user/--bot)> <token> <server ID> <user ID>\n${chalk.underline(
           "Notes:"
-        )} This requires the Kick Members permission - if you get a 403 error, this might be why.`
+        )} This requires the Kick Members permission - if you get a 403 error, this might be why.\n\n${chalk.bold(
+          "-ban:"
+        )} Bans a member from the specified server.\n${chalk.underline(
+          "Example usage:"
+        )} termviolt -ban <(--user/--bot)> <token> <server ID> <user ID>\n${chalk.underline(
+          "Notes:"
+        )} This requires the Ban Members permission - if you get a 403 error, this might be why.`
       );
       break;
     default:
