@@ -1,7 +1,8 @@
 #! /usr/bin/env node --no-warnings --experimental-specifier-resolution=node --experimental-json-modules
 
 import chalk from "chalk";
-import { ban, kick, sendMsg, styles } from "./lib/index.js";
+import { ban, kick, sendMsg } from "./commands/index.js";
+import { styles } from "./lib/index.js";
 import packageinfo from "../package.json"; // assert { type: "json" };
 
 const [nodeExec, scriptPath, command, ...args] = process.argv;
@@ -38,19 +39,19 @@ if (command) {
           "-send:"
         )} Sends a message via the specified account.\n${chalk.underline(
           "Example usage:"
-        )} termviolt -send <(--user/--bot)> <token> <channel ID> <message content (in quotes)>\n${chalk.underline(
+        )} termviolt -send <token> <channel ID> <message content (in quotes)> [custom API URL]\n${chalk.underline(
           "Notes:"
         )} Formatting may be broken in some cases.\n\n${chalk.bold(
           "-kick:"
         )} Kicks a member from the specified server.\n${chalk.underline(
           "Example usage:"
-        )} termviolt -kick <(--user/--bot)> <token> <server ID> <user ID>\n${chalk.underline(
+        )} termviolt -kick <token> <server ID> <user ID> [custom API URL]\n${chalk.underline(
           "Notes:"
         )} This requires the Kick Members permission - if you get a 403 error, this might be why.\n\n${chalk.bold(
           "-ban:"
         )} Bans a member from the specified server.\n${chalk.underline(
           "Example usage:"
-        )} termviolt -ban <(--user/--bot)> <token> <server ID> <user ID>\n${chalk.underline(
+        )} termviolt -ban <token> <server ID> <user ID> [custom API URL]\n${chalk.underline(
           "Notes:"
         )} This requires the Ban Members permission - if you get a 403 error, this might be why.`
       );
