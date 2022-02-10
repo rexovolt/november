@@ -1,4 +1,4 @@
-# v0.3.0 (unreleased)
+# v0.3.0 (2022-02-10)
 
 - **BREAKING**: The library has been rewritten in TypeScript - this means that the project is run from the `dist` folder, meaning that you might need to reinstall Termivolt.
 - Add support for banning users (-ban)
