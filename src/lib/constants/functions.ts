@@ -1,6 +1,6 @@
 import { Client } from "revolt.js";
 
-import { styles } from "./index.js";
+import { styles, strings } from "./index.js";
 
 const checkIfBot = function (input: string) {
   switch (input) {
@@ -29,12 +29,8 @@ const login = async function (token: string, apiURL: string, userType: string) {
       ? client.loginBot(token)
       : client.useExistingSession({ token, user_id: "", name: "" });
     return client;
-  } catch (error) {
-    console.log(
-      styles.error(
-        `There was an issue logging in - are your token and user type correct?\nThe issue was: ${error}`
-      )
-    );
+  } catch (error: any) {
+    console.log(strings.global.errors.loginFailed(error));
     process.exit();
   }
 };
