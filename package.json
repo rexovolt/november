@@ -28,7 +28,8 @@
   "homepage": "https://github.com/rexogamer/termivolt#readme",
   "dependencies": {
     "chalk": "^5.0.0",
-    "revolt.js": "^5.2.7"
+    "revolt.js": "^5.2.7",
+    "rimraf": "^3.0.2"
   },
   "engines": {
     "node": "^12.13.0 || ^14.15.0 || >=16"
@@ -40,7 +41,6 @@
   ],
   "devDependencies": {
     "@types/node": "^17.0.10",
-    "@types/ws": "^8.2.2",
-    "rimraf": "^3.0.2"
+    "@types/ws": "^8.2.2"
   }
 }
