@@ -1,6 +1,10 @@
-# v0.3.1 (2022-03-12)
+# v0.3.3 (2022-03-12)
 
-This release should hopefully fix a bug where the package could not be installed.
+This release fixes a bug where the package could not be installed.
+
+# v0.3.2 (2022-03-12)
+
+This release attempted to fix a bug where the package could not be installed.
 
 # v0.3.1 (2022-02-10)
 

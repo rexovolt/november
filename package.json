@@ -1,8 +1,8 @@
 {
   "name": "termivolt",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A simple utility to interact with the Revolt API via the command line.",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "type": "module",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -33,7 +33,7 @@
   "engines": {
     "node": "^12.13.0 || ^14.15.0 || >=16"
   },
-  "bin": "dist/index.js",
+  "bin": "dist/src/index.js",
   "files": [
     "dist/",
     "CHANGELOG.md"
