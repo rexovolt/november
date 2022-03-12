@@ -3,7 +3,7 @@
 import chalk from "chalk";
 import { ban, kick, sendMsg } from "./commands/index.js";
 import { strings, styles } from "./lib/index.js";
-import packageinfo from "../package.json"; // assert { type: "json" };
+import packageinfo from "../package.json" assert { type: "json" };
 
 const [nodeExec, scriptPath, command, ...args] = process.argv;
 
