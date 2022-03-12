@@ -1,10 +1,16 @@
+# v0.3.4 (2022-03-12)
+
+This release fixes a few more issues - the library should now be useable again. Apologies for the prior issues!
+
+Please note that **this will be the last version to support Node 12, 14 and versions of Node 16 before 16.14.0**. This release also **does not work** on Node 16.14.0+. Please use 0.4.0 instead.
+
 # v0.3.3 (2022-03-12)
 
-This release fixes a bug where the package could not be installed.
+This release fixed a bug where the package could not be installed. _This release does not work._
 
 # v0.3.2 (2022-03-12)
 
-This release attempted to fix a bug where the package could not be installed.
+This release attempted to fix a bug where the package could not be installed. _This release does not work._
 
 # v0.3.1 (2022-02-10)
 

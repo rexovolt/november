@@ -1,6 +1,6 @@
 {
   "name": "termivolt",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A simple utility to interact with the Revolt API via the command line.",
   "main": "dist/src/index.js",
   "type": "module",
