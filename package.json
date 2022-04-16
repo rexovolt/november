@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rexogamer/termivolt.git"
+    "url": "git+https://github.com/rexovolt/termivolt.git"
   },
   "keywords": [
     "revolt",
@@ -23,9 +23,9 @@
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rexogamer/termivolt/issues"
+    "url": "https://github.com/rexovolt/termivolt/issues"
   },
-  "homepage": "https://github.com/rexogamer/termivolt#readme",
+  "homepage": "https://github.com/rexovolt/termivolt#readme",
   "dependencies": {
     "chalk": "^5.0.0",
     "revolt.js": "^5.2.7"

@@ -82,4 +82,4 @@ If you need help, or want to see a list of commands, run `termivolt -help`. This
 
 ## Support
 
-If you want to report a bug, suggest a feature or get help with using Termivolt, you can [open an issue](https://github.com/rexogamer/termivolt/issues/new) or join [Termivolt's support server](https://rvlt.gg/ra9dr2Rd) on Revolt.
+If you want to report a bug, suggest a feature or get help with using Termivolt, you can [open an issue](https://github.com/rexovolt/termivolt/issues/new) or join [Termivolt's support server](https://rvlt.gg/ra9dr2Rd) on Revolt.
