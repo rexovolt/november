@@ -50,6 +50,18 @@ In addtion to the required arguments:
 - The channel ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the channel's entry on the channel list and selecting "Copy channel ID".
 - The message itself should be fully encased in double quotes - if you want to use double quotes in the message itself, escape them with a backslash. Note that message formatting may be messed up in some cases - I'm still investigating as to why, but it seems backticks and \newlines break.
 
+### Archiving messages (-archive)
+
+To archive messages with Termivolt, run `termivolt -archive`. Here's the full list of arguments:
+
+`termivolt -archive <(--user/--bot)> <token> <channel id (in quotes)> [custom API URL]`
+
+#### Arguments
+
+In addtion to the required arguments:
+
+- The channel ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the channel's entry on the channel list and selecting "Copy channel ID".
+
 ### Kicking users (-kick)
 
 To kick members from servers with Termivolt, run `termivolt -kick`. Note that you'll need the `Kick Members` permission - if you get a 403 error, this might be why. Here's the full list of arguments:
@@ -74,6 +86,19 @@ To ban members from servers with Termivolt, run `termivolt -ban`. Note that you'
 In addtion to the required arguments:
 
 - The server ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the server's entry on the server list and selecting "Copy server ID".
+- The user ID should aslo be provided as a string.
+
+### Removing users from a group DM (-rmfromgroup)
+
+To remove users from a group DM with Termivolt, run `termivolt -rmfromgroup`. Note that you need to own the group - if you get a 403 error, this might be why. Here's the full list of arguments:
+
+`termivolt -rmfromgroup <(--user/--bot)> <token> <group id (in quotes)> <user id (in quotes)> [custom API URL]`
+
+#### Arguments
+
+In addtion to the required arguments:
+
+- The group ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the groups's entry on the DM list and selecting "Copy server ID".
 - The user ID should aslo be provided as a string.
 
 ### Help (-help)

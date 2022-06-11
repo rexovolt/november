@@ -1,4 +1,4 @@
-import { styles, login } from "../lib/constants/index.js";
+import { styles, login, fetchChannel } from "../lib/constants/index.js";
 
 const sendMsg = async function (
   userType: string,
@@ -46,20 +46,7 @@ const sendMsg = async function (
   console.log(styles.info("[INFO] Logged in."));
 
   client.on("ready", async () => {
-    try {
-      const chnl = client.channels?.get(channel);
-      if (chnl === undefined) throw Error;
-    } catch (error) {
-      console.log(
-        styles.error(
-          `There was an issue getting the channel - is the ID correct?\nThe error was: ${error}`
-        )
-      );
-      client.logout();
-      process.exit();
-    }
-
-    const channel2 = client.channels?.get(channel);
+    const channel2 = await fetchChannel(client, channel);
     console.log(styles.info("[INFO] The channel has been found."));
 
     // send the message

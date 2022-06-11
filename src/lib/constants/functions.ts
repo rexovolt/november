@@ -35,4 +35,20 @@ const login = async function (token: string, apiURL: string, userType: string) {
   }
 };
 
-export { checkIfBot, login };
+const fetchChannel = async function (client: Client, channel: string) {
+  try {
+    const chnl = client.channels?.get(channel);
+    if (chnl === undefined) throw Error;
+    return chnl;
+  } catch (error) {
+    console.log(
+      styles.error(
+        `There was an issue getting the channel - is the ID correct?\nThe error was: ${error}`
+      )
+    );
+    client.logout();
+    process.exit();
+  }
+};
+
+export { checkIfBot, fetchChannel, login };

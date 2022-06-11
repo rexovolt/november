@@ -1,6 +1,6 @@
 {
   "name": "termivolt",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "A simple utility to interact with the Revolt API via the command line.",
   "main": "dist/src/index.js",
   "type": "module",
@@ -27,8 +27,9 @@
   },
   "homepage": "https://github.com/rexovolt/termivolt#readme",
   "dependencies": {
-    "chalk": "^5.0.0",
-    "revolt.js": "^5.2.7"
+    "chalk": "^5.0.1",
+    "revchiver": "^0.5.3",
+    "revolt.js": "^6.0.2"
   },
   "engines": {
     "node": "^12.13.0 || ^14.15.0 || >=16"
@@ -39,8 +40,8 @@
     "CHANGELOG.md"
   ],
   "devDependencies": {
-    "@types/node": "^17.0.10",
-    "@types/ws": "^8.2.2",
+    "@types/node": "^17.0.42",
+    "@types/ws": "^8.5.3",
     "rimraf": "^3.0.2"
   }
 }

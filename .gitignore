@@ -86,3 +86,6 @@ web_modules/
 
 # Dist files
 dist
+
+# Archive files
+archives/

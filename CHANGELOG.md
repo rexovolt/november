@@ -1,3 +1,9 @@
+# v0.5.0 (2022-03-12)
+
+- **BREAKING**: This is the first version of Termivolt to support Revolt v0.5.3+ - it will **not work** with older versions of Revolt.
+- Added support for archiving channels (`-archive`), fetching messages (`-fetch`) and removing memebrs from groups (`-rmfromgroup`).
+- Various other minor improvements.
+
 # v0.4.1 (2022-03-12)
 
 - **BREAKING**: 0.4.1 requires Node 16.14.0 or higher. If you're using Node 12/14/older versions of Node 16, please use 0.3.4 instead.
