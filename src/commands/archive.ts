@@ -16,7 +16,7 @@ const archive = async function (
         "You need to specify whether the account is a user or a bot (--user/--bot), a token, the channel's ID and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!token) {
     console.log(
@@ -24,7 +24,7 @@ const archive = async function (
         "You need to specify a token, the channel's ID and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!channel) {
     console.log(
@@ -32,7 +32,7 @@ const archive = async function (
         "You need to specify the channel's ID and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
 
   // log in
@@ -48,7 +48,7 @@ const archive = async function (
         console.log(
           styles.error("[PRE-ARCHIVE] There aren't any messages to archive!")
         );
-        return process.exit();
+        return process.exit(1);
       } else {
         const msg = msgs[0];
         console.log(styles.info("[INFO] Starting archival process..."));
@@ -92,7 +92,7 @@ const archive = async function (
     }
 
     // for SOME reason we need to end the process manually after sending the message - is something lingering?
-    process.kill(process.pid);
+    return process.exit(0);
   });
 };
 

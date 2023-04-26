@@ -4,3 +4,5 @@ export { ban } from "./ban.js";
 export { rmFromGroup } from "./rmfromgroup.js";
 export { archive } from "./archive.js";
 export { fetchMsgs } from "./fetch.js";
+export { interactive } from "./interactive.js";
+export { help } from "./help.js";

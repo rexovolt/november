@@ -1,4 +1,4 @@
-import { Client } from "revolt.js";
+import { Channel, Client, Message } from "revolt.js";
 
 import { styles, strings } from "./index.js";
 
@@ -22,16 +22,14 @@ const login = async function (token: string, apiURL: string, userType: string) {
         `The specified account type (${userType}) was invalid - use --user or --bot.`
       )
     );
-    process.exit();
+    return process.exit(1);
   }
   try {
-    isBot
-      ? client.loginBot(token)
-      : client.useExistingSession({ token, user_id: "", name: "" });
+    isBot ? client.loginBot(token) : client.useExistingSession({ token });
     return client;
   } catch (error: any) {
     console.log(strings.global.errors.loginFailed(error));
-    process.exit();
+    return process.exit(1);
   }
 };
 
@@ -47,8 +45,56 @@ const fetchChannel = async function (client: Client, channel: string) {
       )
     );
     client.logout();
-    process.exit();
+    return process.exit(1);
   }
 };
 
-export { checkIfBot, fetchChannel, login };
+const renderMessages = async function (
+  channel: Channel,
+  useLegacyBehaviour: boolean,
+  amount: number = 10,
+  message?: Message
+) {
+  // common code
+  function contentToSend(msg: Message) {
+    if (msg.content === null) {
+      if (msg.system === null) {
+        return "No content.";
+      } else {
+        return msg.system?.type;
+      }
+    } else {
+      return msg.content;
+    }
+  }
+
+  function messageRenderer(msg: Message) {
+    const content = contentToSend(msg);
+    return `${styles.info(
+      `${msg.author?.username} (${msg.author_id}) - ${msg._id} (${msg.createdAt})`
+    )}\n${content}`;
+  }
+
+  // if a message has not been passed, fetch the provided amount of messages and render those instead
+  if (!message) {
+    const msgs = await channel.fetchMessages({
+      limit: amount,
+      sort: "Latest",
+    });
+    if (!msgs.length) return "noMsgs";
+    if (useLegacyBehaviour)
+      console.log(styles.success("Sucessfully fetched messages!"));
+    let rawoutput = [] as string[];
+    const sortedMsgs = msgs.sort((msg, msg2) => msg.createdAt - msg2.createdAt);
+    sortedMsgs.forEach((msg) => {
+      const obj = messageRenderer(msg);
+      rawoutput.push(obj);
+    });
+    const output =
+      (useLegacyBehaviour ? styles.header("Messages (oldest first):\n") : "") +
+      rawoutput.join("\n");
+    return output;
+  }
+};
+
+export { checkIfBot, renderMessages, fetchChannel, login };

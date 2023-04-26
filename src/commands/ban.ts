@@ -14,7 +14,7 @@ const ban = async function (
         "You need to specify whether the account is a user or a bot (--user/--bot), a token, the server ID, the ID of the user to ban and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!token) {
     console.log(
@@ -22,7 +22,7 @@ const ban = async function (
         "You need to specify a token, a server ID, the ID of the user to ban and optionally a custom API URL (all in quotes)."
       )
     );
-    process.exit();
+    return process.exit(1);
   }
   if (!server) {
     console.log(
@@ -30,7 +30,7 @@ const ban = async function (
         "You need to specify a server ID, the ID of the user to ban and optionally a custom API URL (all in quotes)."
       )
     );
-    process.exit();
+    return process.exit(1);
   }
   if (!userid) {
     console.log(
@@ -38,7 +38,7 @@ const ban = async function (
         "You need to specify the ID of the user to ban and optionally a custom API URL (both in quotes)."
       )
     );
-    process.exit();
+    return process.exit(1);
   }
 
   // log in
@@ -56,7 +56,7 @@ const ban = async function (
         )
       );
       client.logout();
-      process.exit();
+      return process.exit(1);
     }
 
     const server2 = client.servers?.get(server);
@@ -76,7 +76,7 @@ const ban = async function (
     }
 
     // for SOME reason we need to end the process manually after banning the user - is something lingering?
-    process.kill(process.pid);
+    return process.exit(0);
   });
 };
 

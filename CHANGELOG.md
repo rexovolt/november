@@ -1,7 +1,7 @@
 # v0.5.0 (2022-03-12)
 
 - **BREAKING**: This is the first version of Termivolt to support Revolt v0.5.3+ - it will **not work** with older versions of Revolt.
-- Added support for archiving channels (`-archive`), fetching messages (`-fetch`) and removing memebrs from groups (`-rmfromgroup`).
+- Added support for archiving channels (`-archive`), fetching messages (`-fetch`) and removing members from groups (`-rmfromgroup`).
 - Various other minor improvements.
 
 # v0.4.1 (2022-03-12)

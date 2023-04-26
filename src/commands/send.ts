@@ -14,7 +14,7 @@ const sendMsg = async function (
         "You need to specify whether the account is a user or a bot (--user/--bot), a token, a channel ID, the content of the message and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!token) {
     console.log(
@@ -22,7 +22,7 @@ const sendMsg = async function (
         "You need to specify a token, a channel ID, the content of the message and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!channel) {
     console.log(
@@ -30,7 +30,7 @@ const sendMsg = async function (
         "You need to specify a channel ID, the content of the message and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!content) {
     console.log(
@@ -38,7 +38,7 @@ const sendMsg = async function (
         "You need to specify the content of the message and optionally a custom API URL (both in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
 
   // log in
@@ -62,7 +62,7 @@ const sendMsg = async function (
     }
 
     // for SOME reason we need to end the process manually after sending the message - is something lingering?
-    process.kill(process.pid);
+    return process.exit(0);
   });
 };
 

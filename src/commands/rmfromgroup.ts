@@ -14,7 +14,7 @@ const rmFromGroup = async function (
         "You need to specify whether the account is a user or a bot (--user/--bot), a token, the group's ID, the ID of the user to remove and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!token) {
     console.log(
@@ -22,7 +22,7 @@ const rmFromGroup = async function (
         "You need to specify a token, the group's ID, the ID of the user to remove and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!group) {
     console.log(
@@ -30,7 +30,7 @@ const rmFromGroup = async function (
         "You need to specify the group's ID, the ID of the user to remove and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!member) {
     console.log(
@@ -38,7 +38,7 @@ const rmFromGroup = async function (
         "You need to specify the ID of the user to remove and optionally a custom API URL (both in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
 
   // log in
@@ -53,7 +53,7 @@ const rmFromGroup = async function (
           `That doesn't seem to be a group - have you used the right ID?`
         )
       );
-      return process.kill(process.pid);
+      return process.exit(1);
     }
     console.log(styles.info("[INFO] The group has been found."));
 
@@ -70,7 +70,7 @@ const rmFromGroup = async function (
     }
 
     // for SOME reason we need to end the process manually after sending the message - is something lingering?
-    process.kill(process.pid);
+    return process.exit(0);
   });
 };
 

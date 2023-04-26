@@ -14,7 +14,7 @@ const kick = async function (
         "You need to specify whether the account is a user or a bot (--user/--bot), a token, the server ID, the ID of the user to kick and optionally a custom API URL (all in quotes)."
       )
     );
-    return process.exit();
+    return process.exit(1);
   }
   if (!token) {
     console.log(
@@ -22,7 +22,7 @@ const kick = async function (
         "You need to specify a token, a server ID, the ID of the user to kick and optionally a custom API URL (all in quotes)."
       )
     );
-    process.exit();
+    return process.exit(1);
   }
   if (!server) {
     console.log(
@@ -30,7 +30,7 @@ const kick = async function (
         "You need to specify a server ID, the ID of the user to kick and optionally a custom API URL (all in quotes)."
       )
     );
-    process.exit();
+    return process.exit(1);
   }
   if (!userid) {
     console.log(
@@ -38,7 +38,7 @@ const kick = async function (
         "You need to specify the ID of the user to kick and optionally a custom API URL (both in quotes)."
       )
     );
-    process.exit();
+    return process.exit(1);
   }
 
   // log in
@@ -50,13 +50,14 @@ const kick = async function (
       const srv = client.servers?.get(server);
       if (srv === undefined) throw Error;
     } catch (error) {
+      // catch any issues and warn if the server doesn't exist
       console.log(
         styles.error(
           `There was an issue getting the server - is the ID correct?\nThe error was: ${error}`
         )
       );
       client.logout();
-      process.exit();
+      return process.exit(1);
     }
 
     const server2 = client.servers?.get(server);
@@ -75,7 +76,7 @@ const kick = async function (
     }
 
     // for SOME reason we need to end the process manually after kicking the user - is something lingering?
-    process.kill(process.pid);
+    return process.exit(0);
   });
 };
 

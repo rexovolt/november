@@ -50,6 +50,29 @@ In addtion to the required arguments:
 - The channel ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the channel's entry on the channel list and selecting "Copy channel ID".
 - The message itself should be fully encased in double quotes - if you want to use double quotes in the message itself, escape them with a backslash. Note that message formatting may be messed up in some cases - I'm still investigating as to why, but it seems backticks and \newlines break.
 
+### Use Termivolt as a TUI (-interactive)
+
+To use Termivolt as an interactive client, run `termivolt -interactive`. Here's the full list of arguments:
+
+`termivolt -interactive <(--user/--bot)> <token> [custom API URL]`
+
+#### Arguments
+
+Aside from the required arguments, this command does not take any extra arguments since, as the name suggests, it's designed for interactive use.
+
+### Fetching messages (-fetch)
+
+To fetch messages with Termivolt, run `termivolt -fetch`. Here's the full list of arguments:
+
+`termivolt -send <(--user/--bot)> <token> <channel id (in quotes)> [amount of messages to send] [custom API URL]`
+
+#### Arguments
+
+In addtion to the required arguments:
+
+- The channel ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the channel's entry on the channel list and selecting "Copy channel ID".
+- If specified, the amount should be provided as a standard number - the maximum amount of messages you can fetch is 100, and the default is 10.
+
 ### Archiving messages (-archive)
 
 To archive messages with Termivolt, run `termivolt -archive`. Here's the full list of arguments:
@@ -73,7 +96,7 @@ To kick members from servers with Termivolt, run `termivolt -kick`. Note that yo
 In addtion to the required arguments:
 
 - The server ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the server's entry on the server list and selecting "Copy server ID".
-- The user ID should aslo be provided as a string.
+- The user ID should also be provided as a string.
 
 ### Banning users (-ban)
 
@@ -86,7 +109,7 @@ To ban members from servers with Termivolt, run `termivolt -ban`. Note that you'
 In addtion to the required arguments:
 
 - The server ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the server's entry on the server list and selecting "Copy server ID".
-- The user ID should aslo be provided as a string.
+- The user ID should also be provided as a string.
 
 ### Removing users from a group DM (-rmfromgroup)
 
@@ -99,7 +122,7 @@ To remove users from a group DM with Termivolt, run `termivolt -rmfromgroup`. No
 In addtion to the required arguments:
 
 - The group ID should be provided as a string (i.e. in quotes). You can find it in the URL when using Revite (the official Revolt client) or by right-clicking the groups's entry on the DM list and selecting "Copy server ID".
-- The user ID should aslo be provided as a string.
+- The user ID should also be provided as a string.
 
 ### Help (-help)
 
