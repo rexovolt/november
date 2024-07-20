@@ -1,0 +1,21 @@
+{
+    "name": "@rexovolt/november",
+    "author": {
+        "name": "Rexogamer",
+        "email": "beartechtalks@gmail.com"
+    },
+    "license": "MIT",
+    "type": "module",
+    "private": true,
+    "packageManager": "yarn@1.22.19",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rexovolt/november.git"
+    },
+    "workspaces": [
+        "packages/*"
+    ],
+    "devDependencies": {
+        "typescript": "^5.5.3"
+    }
+}

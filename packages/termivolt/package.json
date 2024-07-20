@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rexovolt/termivolt.git"
+    "url": "git+https://github.com/rexovolt/november.git"
   },
   "keywords": [
     "revolt",
@@ -22,13 +22,13 @@
     "name": "Rexogamer",
     "email": "beartechtalks@gmail.com"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rexovolt/termivolt/issues"
+    "url": "https://github.com/rexovolt/november/issues"
   },
-  "homepage": "https://github.com/rexovolt/termivolt#readme",
+  "homepage": "https://github.com/rexovolt/november/tree/main/packages/termivolt#readme",
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "bin": {
     "termivolt": "dist/index.cjs"
@@ -47,8 +47,6 @@
     "esbuild": "^0.23.0",
     "inquirer": "^9.1.4",
     "revchiver": "^0.6.0",
-    "revolt.js": "^6.0.20",
-    "typescript": "^5.5.3"
-  },
-  "packageManager": "yarn@1.22.19"
+    "revolt.js": "^6.0.20"
+  }
 }
