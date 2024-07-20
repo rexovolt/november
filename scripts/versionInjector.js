@@ -1,4 +1,4 @@
-// this file is used to nject the version/build timestamp for Termivolt at build time
+// this file is used to inject the version/build timestamp for Termivolt at build time
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";

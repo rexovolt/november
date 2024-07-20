@@ -69,7 +69,7 @@ const rmFromGroup = async function (
       );
     }
 
-    // for SOME reason we need to end the process manually after sending the message - is something lingering?
+    // for SOME reason we need to end the process manually - is something lingering?
     return process.exit(0);
   });
 };
