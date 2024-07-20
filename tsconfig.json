@@ -3,11 +3,6 @@
     "target": "esnext",
     "module": "NodeNext",
     "declaration": true,
-    "outDir": "./dist",
-    "rootDirs": [
-      "./src",
-      "./package.json"
-    ],
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
