@@ -1,12 +1,16 @@
 import chalk from "chalk";
+import os from "os";
 
-import { styles } from "../lib/index.js";
-import packageinfo from "../../package.json" assert { type: "json" };
+import { builtTimestamp, styles, version } from "../lib/index.js";
 
-const help = function () {
+const help = function (debug?: boolean) {
   return console.log(
     `${styles.title(
-      `Termivolt v${packageinfo.version}`
+      `Termivolt v${version}${
+        debug
+          ? ` (built ${builtTimestamp}; ${os.version} ${os.release} w/Node ${process.version})`
+          : ""
+      }`
     )}\nTermivolt is a simple utility to interact with the Revolt API via the command line.\n\n${styles.header(
       "Commands:\n"
     )}${chalk.bold(

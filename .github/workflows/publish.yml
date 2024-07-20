@@ -11,6 +11,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Prepare env
+        # cd packages/termivolt
         run: |
           yarn set version classic
           yarn install --prod=false
