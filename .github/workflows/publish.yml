@@ -1,11 +1,11 @@
-name: Publish to NPM on new releases
+name: Build and publish to NPM on new releases
 on:
   push:
     branches:
       - main
 jobs:
   npm-publish:
-    name: npm-publish
+    name: Build (and, if relevant, publish) Termivolt
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -21,7 +21,7 @@ jobs:
           tag_name: "v%s"
           tag_message: "v%s"
           commit_pattern: "^release(termivolt): (\\S+)"
-          workspace: "."
+          workspace: "./packages/termivolt"
           publish_command: "yarn"
           publish_args: "--non-interactive"
         env:
