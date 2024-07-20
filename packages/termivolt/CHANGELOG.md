@@ -1,3 +1,9 @@
+# v0.6.0 (2024-07-20)
+
+- **BREAKING**: v0.6.0 now requires Node v18 or later.
+- Added support for interactive uasge (`-interactive`).
+- Various improvements to the build process and other cleanup.
+
 # v0.5.0 (2022-03-12)
 
 - **BREAKING**: This is the first version of Termivolt to support Revolt v0.5.3+ - it will **not work** with older versions of Revolt.
