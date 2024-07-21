@@ -1,10 +1,15 @@
-import type { /* Member, */ Message } from "revolt.js";
+import type { Client, /* Member, */ Message } from "revolt.js";
 
-export async function archiveChannel(msg: Message, ignoredMsgs?: Message[]) {
+export async function archiveChannel(
+  client: Client,
+  msg: Message,
+  ignoredMsgs?: Message[]
+) {
   const sleep = (ms: number | undefined) =>
     new Promise((r) => setTimeout(r, ms));
 
-  const autumnURL = msg.client.configuration?.features.autumn.url;
+  const config = client.configuration ?? (await client.api.get("/"));
+  const autumnURL = config.features.autumn.url;
 
   const archiveData = {
     server_id: "",
@@ -17,15 +22,15 @@ export async function archiveChannel(msg: Message, ignoredMsgs?: Message[]) {
   };
 
   // check if the script is being run by rexbot
-  const isRexBot = msg.client.user?._id! === "01FEEXZT74QWW1HSQH8B8BH1S1";
+  const isRexBot = client.user?.id! === "01FEEXZT74QWW1HSQH8B8BH1S1";
 
   // gather info
   const isServer = msg.channel?.server;
-  archiveData.server_id = isServer ? msg.channel.server._id : "notAServer";
+  archiveData.server_id = isServer ? msg.channel.serverId : "notAServer";
   archiveData.server_name = isServer ? msg.channel.server.name : "notAServer";
-  archiveData.channel_id = msg.channel_id!;
+  archiveData.channel_id = msg.channelId!;
   archiveData.channel_name = msg.channel?.name!;
-  archiveData.archiver = isRexBot ? msg.author?._id! : msg.client.user?._id!; // if the script is being run by rexbot, use the id of the author of the message; else, use the client's id
+  archiveData.archiver = isRexBot ? msg.authorId! : client.user?.id!; // if the script is being run by rexbot, use the id of the author of the message; else, use the client's id
   archiveData.archived_at = new Date().getTime();
 
   // fetch/push messages
@@ -39,7 +44,7 @@ export async function archiveChannel(msg: Message, ignoredMsgs?: Message[]) {
 
     let attachmentsObj: string[] = [];
     m.attachments?.forEach((a) => {
-      attachmentsObj.push(`${autumnURL}/attachments/${a._id}/${a.filename}`);
+      attachmentsObj.push(`${autumnURL}/attachments/${a.id}/${a.filename}`);
     });
 
     type Reaction = {
@@ -54,22 +59,22 @@ export async function archiveChannel(msg: Message, ignoredMsgs?: Message[]) {
     });
 
     archiveData.messages.push({
-      message_id: m._id,
-      sender_id: m.author_id,
+      message_id: m.id,
+      sender_id: m.authorId,
       sender_name:
         m.masquerade?.name ?? m.member?.nickname ?? m.author?.username, // order: masq > nick > username
       sender_avatar: `${autumnURL}/avatars/${
         m.masquerade?.avatar ?? m.member?.avatar
-          ? `${m.member?.avatar?._id}/${m.member?.avatar?.filename}`
-          : `${m.author?.avatar?._id}/${m.author?.avatar?.filename}`
+          ? `${m.member?.avatar?.id}/${m.member?.avatar?.filename}`
+          : `${m.author?.avatar?.id}/${m.author?.avatar?.filename}`
       }`, // order: masq > server > global
-      content: m.content ?? m.system,
+      content: m.content ?? m.systemMessage,
       attachments: attachmentsObj,
       reactions: reactionsObj,
     });
   }
   let continueFetching = true;
-  let fetchbefore = msg._id;
+  let fetchbefore = msg.id;
   while (continueFetching) {
     const msgs = await msg.channel?.fetchMessages({
       limit: 100,
@@ -77,15 +82,15 @@ export async function archiveChannel(msg: Message, ignoredMsgs?: Message[]) {
     });
     if (!msgs) return "nothingToArchive?";
 
-    if (fetchbefore === msg._id) {
-      const extraMsg = await msg.channel?.fetchMessage(msg._id);
+    if (fetchbefore === msg.id) {
+      const extraMsg = await msg.channel?.fetchMessage(msg.id);
       pushMsg(extraMsg!);
     }
 
     if (msgs.length < 100) {
       continueFetching = false;
     } else {
-      fetchbefore = msgs[99]._id;
+      fetchbefore = msgs[99].id;
     }
 
     msgs.forEach((m) => {

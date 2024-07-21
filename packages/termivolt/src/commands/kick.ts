@@ -56,7 +56,6 @@ const kick = async function (
           `There was an issue getting the server - is the ID correct?\nThe error was: ${error}`
         )
       );
-      client.logout();
       return process.exit(1);
     }
 

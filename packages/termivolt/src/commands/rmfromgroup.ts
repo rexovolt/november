@@ -47,7 +47,7 @@ const rmFromGroup = async function (
 
   client.on("ready", async () => {
     const channel2 = await fetchChannel(client, group);
-    if (channel2.channel_type !== "Group") {
+    if (channel2.type !== "Group") {
       console.log(
         styles.error(
           `That doesn't seem to be a group - have you used the right ID?`

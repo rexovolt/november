@@ -14,7 +14,7 @@ const checkIfBot = function (input: string) {
 };
 
 const login = async function (token: string, apiURL: string, userType: string) {
-  const client = new Client({ apiURL });
+  const client = new Client({ baseURL: apiURL });
   const isBot = checkIfBot(userType);
   if (isBot === "invalid") {
     console.log(
@@ -25,7 +25,17 @@ const login = async function (token: string, apiURL: string, userType: string) {
     return process.exit(1);
   }
   try {
-    isBot ? client.loginBot(token) : client.useExistingSession({ token });
+    if (isBot) {
+      await client.loginBot(token);
+    } else {
+      await client.useExistingSession({
+        _id: "",
+        token,
+        user_id: "",
+      });
+      client.connect();
+    }
+
     return client;
   } catch (error: any) {
     console.log(strings.global.errors.loginFailed(error));
@@ -36,7 +46,7 @@ const login = async function (token: string, apiURL: string, userType: string) {
 const fetchChannel = async function (client: Client, channel: string) {
   try {
     const chnl = client.channels?.get(channel);
-    if (chnl === undefined) throw Error;
+    if (chnl === undefined) throw Error(`Channel is undefined (${chnl})`);
     return chnl;
   } catch (error) {
     console.log(
@@ -44,7 +54,6 @@ const fetchChannel = async function (client: Client, channel: string) {
         `There was an issue getting the channel - is the ID correct?\nThe error was: ${error}`
       )
     );
-    client.logout();
     return process.exit(1);
   }
 };
@@ -57,11 +66,11 @@ const renderMessages = async function (
 ) {
   // common code
   function contentToSend(msg: Message) {
-    if (msg.content === null) {
-      if (msg.system === null) {
+    if (msg.content === "") {
+      if (msg.systemMessage === undefined) {
         return "No content.";
       } else {
-        return msg.system?.type;
+        return msg.systemMessage.type;
       }
     } else {
       return msg.content;
@@ -71,7 +80,7 @@ const renderMessages = async function (
   function messageRenderer(msg: Message) {
     const content = contentToSend(msg);
     return `${styles.info(
-      `${msg.author?.username} (${msg.author_id}) - ${msg._id} (${msg.createdAt})`
+      `${msg.author?.username} (${msg.authorId}) - ${msg.id} (${msg.createdAt})`
     )}\n${content}`;
   }
 
@@ -85,7 +94,9 @@ const renderMessages = async function (
     if (useLegacyBehaviour)
       console.log(styles.success("Sucessfully fetched messages!"));
     let rawoutput = [] as string[];
-    const sortedMsgs = msgs.sort((msg, msg2) => msg.createdAt - msg2.createdAt);
+    const sortedMsgs = msgs.sort(
+      (msg, msg2) => msg.createdAt.valueOf() - msg2.createdAt.valueOf()
+    );
     sortedMsgs.forEach((msg) => {
       const obj = messageRenderer(msg);
       rawoutput.push(obj);

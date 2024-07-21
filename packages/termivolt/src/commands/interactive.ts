@@ -42,8 +42,8 @@ const interactive = async function (
     console.log(styles.info("[INFO] Fetching servers/conversations..."));
 
     // get servers and channels
-    const s = client.servers;
-    const c = client.channels;
+    const s = client.servers.toList();
+    const c = client.channels.toList();
 
     // create arrrays
     let conversations = [] as NameIDPair[];
@@ -51,16 +51,11 @@ const interactive = async function (
 
     // filter through channels for DMs/groups
     for (const cnl of c) {
-      if (
-        cnl[1].channel_type === "DirectMessage" ||
-        cnl[1].channel_type === "Group"
-      ) {
+      if (cnl.type === "DirectMessage" || cnl.type === "Group") {
         // use group name > DM recipient username > recipient ID
         const cname =
-          cnl[1].name ??
-          cnl[1].recipient?.username ??
-          `Unnamed channel (${cnl[1]._id})`;
-        conversations.push({ name: cname, id: cnl[1]._id });
+          cnl.name ?? cnl.recipient?.username ?? `Unnamed channel (${cnl.id})`;
+        conversations.push({ name: cname, id: cnl.id });
         conversationNames.push(cname);
       }
     }
@@ -71,8 +66,8 @@ const interactive = async function (
 
     for (const srv of s) {
       // use server name > server ID
-      servers.push({ name: srv[1].name, id: srv[1]._id });
-      serverNames.push(srv[1].name);
+      servers.push({ name: srv.name, id: srv.id });
+      serverNames.push(srv.name);
     }
 
     async function runtime() {

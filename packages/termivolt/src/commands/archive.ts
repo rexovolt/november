@@ -52,7 +52,7 @@ const archive = async function (
       } else {
         const msg = msgs[0];
         console.log(styles.info("[INFO] Starting archival process..."));
-        const archiveData = await archiveChannel(msg);
+        const archiveData = await archiveChannel(client, msg);
         console.log(styles.info("[INFO] Preparing file..."));
         const rawjson = JSON.stringify(archiveData, null, 4);
 
@@ -62,7 +62,9 @@ const archive = async function (
         const json = rawjson.replace(regex, "");
 
         // define filenames
-        const filename = `archive_${msg.channel_id}_${msg.createdAt}.json`;
+        const filename = `archive_${
+          msg.channelId
+        }_${new Date().valueOf()}.json`;
         const dir = `archives/${filename}`;
 
         const __dirname = path.resolve();
