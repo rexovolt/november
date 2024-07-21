@@ -1,0 +1,46 @@
+{
+  "name": "revchiver",
+  "version": "0.6.0",
+  "description": "Archiving library for Revolt.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rexovolt/revchiver.git"
+  },
+  "keywords": [
+    "revolt",
+    "revoltchat",
+    "archiver"
+  ],
+  "author": {
+    "name": "Rexogamer",
+    "email": "beartechtalks@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rexovolt/revchiver/issues"
+  },
+  "homepage": "https://github.com/rexovolt/revchiver#readme",
+  "engines": {
+    "node": "^12.13.0 || ^14.15.0 || >=16"
+  },
+  "files": [
+    "dist/",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "@types/ws": "^8.5.4",
+    "rimraf": "^4.0.4"
+  },
+  "dependencies": {
+    "revolt.js": "^6.0.19"
+  }
+}
