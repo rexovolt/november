@@ -1,4 +1,4 @@
-import { archiveChannel } from "revchiver/dist";
+import { archiveChannel } from "revchiver";
 import { styles, login, fetchChannel } from "../lib/constants/index.js";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
