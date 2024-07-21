@@ -1,15 +1,13 @@
 {
+  "extends": [
+    "../../tsconfig.json"
+  ],
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
     "declaration": true,
     "outDir": "./dist",
-    "rootDirs": ["./src", "./package.json"],
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "skipLibCheck": true
+    "rootDirs": [
+      "./src",
+      "./package.json"
+    ],
   }
 }

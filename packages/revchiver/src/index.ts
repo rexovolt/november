@@ -1,1 +1,1 @@
-export { archiveChannel } from "./archiveChannel";
+export { archiveChannel } from "./archiveChannel.js";

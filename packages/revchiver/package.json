@@ -36,11 +36,6 @@
     "CHANGELOG.md"
   ],
   "devDependencies": {
-    "@types/node": "^17.0.45",
-    "@types/ws": "^8.5.4",
     "rimraf": "^4.0.4"
-  },
-  "dependencies": {
-    "revolt.js": "^6.0.19"
   }
 }

@@ -1,1 +1,1 @@
-export { archiveChannel } from "./src/index";
+export { archiveChannel } from "./src/index.js";
