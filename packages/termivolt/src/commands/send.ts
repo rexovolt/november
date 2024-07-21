@@ -52,7 +52,7 @@ const sendMsg = async function (
     // send the message
     try {
       await channel2!.sendMessage(content);
-      console.log(styles.success("Your message has successfuly been sent."));
+      console.log(styles.success("Your message has successfully been sent."));
     } catch (error) {
       console.log(
         styles.error(
