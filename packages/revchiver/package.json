@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/rexovolt/revchiver#readme",
   "engines": {
-    "node": "^12.13.0 || ^14.15.0 || >=16"
+    "node": ">=18"
   },
   "files": [
     "dist/",
