@@ -2,7 +2,8 @@ import { styles, login, renderMessages } from "../lib/constants/index.js";
 
 import type { NameIDPair } from "../types/Interactive.js";
 
-import inquirer from "inquirer";
+import input from "@inquirer/input";
+import rawlist from "@inquirer/rawlist";
 import { Channel } from "revolt.js";
 
 const interactive = async function (
@@ -29,9 +30,6 @@ const interactive = async function (
   }
 
   console.log(styles.info("[INFO] Initialising..."));
-
-  // init inquirer
-  const prompt = inquirer.createPromptModule();
 
   // log in
   const client = await login(token, apiURL, userType);
@@ -75,7 +73,7 @@ const interactive = async function (
       async function openChannel(selectedConvo: any) {
         console.log(styles.info("[INFO] Opening conversation..."));
         for (const c of conversations) {
-          if (c.name === selectedConvo.name) {
+          if (c.name === selectedConvo) {
             console.log(styles.success("[INFO] Opened conversation."));
             const channel = client.channels.get(c.id);
             if (channel) {
@@ -92,83 +90,66 @@ const interactive = async function (
 
       async function channelOptions(channel: Channel) {
         const canSend = channel.havePermission("SendMessage");
-        prompt([
-          {
-            type: "input",
-            name: "action",
-            message: `Select an action (${
+        const action = await input({
+          message: `Select an action (${
+            canSend ? "<s>end message, " : ""
+          }switch <c>hannel, <q>uit interactive session):`,
+          validate: (value) => {
+            const regexBase = `^[cq${canSend ? "s" : ""}]{1}$`;
+            const regex = new RegExp(regexBase);
+
+            const pass = regex.test(value);
+
+            if (pass) {
+              return true;
+            }
+
+            return `Please select a valid option (${
               canSend ? "<s>end message, " : ""
-            }switch <c>hannel, <q>uit interactive session):`,
-            validate: (value) => {
-              const regexBase = `^[cq${canSend ? "s" : ""}]{1}$`;
-              const regex = new RegExp(regexBase);
-
-              const pass = regex.test(value);
-
-              if (pass) {
-                return true;
-              }
-
-              return `Please select a valid option (${
-                canSend ? "<s>end message, " : ""
-              }switch <c>hannel, <q>uit interactive session).`;
-            },
+            }switch <c>hannel, <q>uit interactive session).`;
           },
-        ]).then(async (input) => {
-          switch (input.action) {
-            case "s":
-              sendMessage(channel);
-              break;
-            case "q":
-              console.log(
-                styles.info("[INFO] Quitting interactive session...")
-              );
-              process.exit(0);
-            case "c":
-            default:
-              selectConvo(conversationNames);
-              break;
-          }
         });
+        switch (action) {
+          case "s":
+            sendMessage(channel);
+            break;
+          case "q":
+            console.log(styles.info("[INFO] Quitting interactive session..."));
+            process.exit(0);
+          case "c":
+          default:
+            selectConvo(conversationNames);
+            break;
+        }
       }
 
       async function sendMessage(channel: Channel) {
-        prompt([
-          {
-            type: "input",
-            name: "message",
-            message: "Enter your message:",
-          },
-        ]).then(async (input) => {
-          // double-check that the user can send messages
-          const canSend = channel.havePermission("SendMessage");
-          if (!canSend) {
-            console.log(
-              styles.error("You cannot send messages in this channel.")
-            );
-          } else {
-            try {
-              await channel.sendMessage(input.message);
-              console.log(styles.success("Your message has been sent!"));
-            } catch (error) {
-              console.log(styles.error("The message could not be sent!"));
-            }
-          }
-          channelOptions(channel);
+        const messageContent = await input({
+          message: "Enter your message:",
         });
+        // double-check that the user can send messages
+        const canSend = channel.havePermission("SendMessage");
+        if (!canSend) {
+          console.log(
+            styles.error("You cannot send messages in this channel.")
+          );
+        } else {
+          try {
+            await channel.sendMessage(messageContent);
+            console.log(styles.success("Your message has been sent!"));
+          } catch (error) {
+            console.log(styles.error("The message could not be sent!"));
+          }
+        }
+        channelOptions(channel);
       }
 
       async function selectConvo(conversationNames: string[]) {
-        prompt([
-          {
-            type: "rawlist",
-            name: "name",
-            message: "Which conversation do you want to open?",
-            choices: conversationNames,
-          },
-        ]).then(async (selectedConvo) => {
-          openChannel(selectedConvo);
+        const selectedConvo = await rawlist({
+          message: "Which conversation do you want to open?",
+          choices: conversationNames,
         });
+        openChannel(selectedConvo);
       }
       selectConvo(conversationNames);
     }
