@@ -1,4 +1,10 @@
-# v6.0.0 (2023-01-14)
+# v0.7.0 (2025-01-11)
+
+- BREAKING: Revchiver now requires Node v18 or later and Revolt.JS v7.
+- BREAKING: `archiveChannel()` now takes 3 parameters and requries a `Client` object as its first parameter.
+- The package should now be smaller.
+
+# v0.6.0 (2023-01-14)
 
 - BREAKING: You must now import functions from the package itself - replace any imports from `revchiver/dist` with imports from `revchiver`.
 - Reactions are now archived.
