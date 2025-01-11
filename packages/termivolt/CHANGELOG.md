@@ -1,3 +1,7 @@
+# v0.6.1 (2025-01-11)
+
+- Dramatically reduced the bundle size.
+
 # v0.6.0 (2024-07-20)
 
 - **BREAKING**: v0.6.0 requires Node v18 or later.

@@ -1,6 +1,6 @@
 {
   "name": "termivolt",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A simple utility to interact with the Revolt API via the command line.",
   "main": "dist/index.cjs",
   "type": "module",
@@ -44,6 +44,6 @@
     "@inquirer/rawlist": "^4.0.4",
     "esbuild": "^0.23.0",
     "picocolors": "^1.1.1",
-    "revchiver": "^0.6.0"
+    "revchiver": "^0.7.0"
   }
 }
